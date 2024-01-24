@@ -1,0 +1,41 @@
+[Left wallpaper]
+Description=Left wallpaper
+acceptfocusrule=2
+below=true
+belowrule=2
+ignoregeometry=true
+ignoregeometryrule=2
+position=0,0
+positionrule=2
+title=Wallpaper Engine Left
+titlematch=1
+wmclass=wallpaper32.exe
+wmclassmatch=1
+
+[Middle wallpaper]
+Description=Middle wallpaper
+acceptfocusrule=2
+below=true
+belowrule=2
+ignoregeometry=true
+ignoregeometryrule=2
+position=1920,0
+positionrule=2
+title=Wallpaper Engine Middle
+titlematch=1
+wmclass=wallpaper32.exe
+wmclassmatch=1
+
+[Right wallpaper]
+Description=Right wallpaper
+acceptfocusrule=2
+below=true
+belowrule=2
+ignoregeometry=true
+ignoregeometryrule=2
+position=4480,0
+positionrule=2
+title=Wallpaper Engine Right
+titlematch=1
+wmclass=wallpaper32.exe
+wmclassmatch=1
