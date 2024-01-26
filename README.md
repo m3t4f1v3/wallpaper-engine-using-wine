@@ -9,4 +9,4 @@ if you want to make it react to music click on the wallpaper engine icon in the 
 
 mpris_server.py and winrt_client.py are pretty much useless right now due to a longstanding "bug" where wine doesn't have proper support for media controls
 
-the settings thing is busted rn because of yet another wine bug, i assume it's to do with SetCurrentProcessExplicitAppUserModelID not being implemented and wallpaper engine using its own groups for the "location" parameter but again i don't care enough to patch wine to fix it
+the applyProperties command is busted rn because of yet another wine bug, i assume it's to do with SetCurrentProcessExplicitAppUserModelID not being implemented and wallpaper engine using its own groups for the "location" parameter but again i don't care enough to patch wine to fix it

@@ -35,11 +35,7 @@ async def process_data(websocket, path):
     updater.type = MediaPlaybackType.MUSIC
     async for message in websocket:
         data = json.loads(message)
-        # i WISH there was match case support
-        if data["status"] == "Playing":
-            controls.media_playback_status = MediaPlaybackStatus.PLAYING
-        else:
-            controls.media_playback_status = MediaPlaybackStatus.PAUSED
+        controls.media_playback_status = MediaPlaybackStatus.PLAYING if data["status"] == "Playing" else MediaPlaybackStatus.PAUSED
         updater.music_properties.title = data["title"]
         updater.music_properties.artist = data["artist"]
         updater.music_properties.album_title = data["album"]
