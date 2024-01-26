@@ -89,10 +89,10 @@ for index, (position, data) in enumerate(wallpaper_mapping.items()):
     # wonder why i'm doing this? wine devs cant be assed to implement SetCurrentProcessExplicitAppUserModelID and neither can i
     # nor can they be assed to implement media controls, so i have to resort to this for BOTH of my problems
     subprocess.Popen(
-        f"wine {steam_folder}/common/wallpaper_engine/wallpaper32.exe -control openWallpaper -file {steam_folder}/workshop/content/431960/wrapper_{position}/project.json -playInWindow \"Wallpaper Engine {position}\" -borderless -width {data['width']} -height 1080 -monitor {index}",
+        f"wine {steam_folder}/common/wallpaper_engine/wallpaper32.exe -control openWallpaper -file {steam_folder}/workshop/content/431960/wrapper_{position}/project.json -playInWindow \"Wallpaper Engine {position}\" -borderless -width {data['width']} -height 1080",
         shell=True,
         env=env,
         stderr=subprocess.DEVNULL,
     )
     if not index == len(wallpaper_mapping) - 1:
-        time.sleep(5)
+        time.sleep(1.5) # cant be done in parallel for some reason
