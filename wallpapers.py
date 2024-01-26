@@ -30,9 +30,9 @@ default_config = {
 }
 
 wallpaper_mapping = {
-    "Left": {"width": 1920, "id": 2225496361, "preset": None},
+    "Left": {"dimensions": [1920, 1080], "id": 2225496361, "preset": None},
     "Middle": {
-        "width": 2560,
+        "dimensions": [2560, 1080],
         "id": 2853443143,
         "preset": {
             "artisttag": False,
@@ -59,7 +59,7 @@ wallpaper_mapping = {
             "textcolor": "1 1 1",
         },
     },
-    "Right": {"width": 1920, "id": 2972092654, "preset": None},
+    "Right": {"dimensions": [1920, 1080], "id": 2972092654, "preset": None},
 }
 
 
@@ -89,7 +89,7 @@ for index, (position, data) in enumerate(wallpaper_mapping.items()):
     # wonder why i'm doing this? wine devs cant be assed to implement SetCurrentProcessExplicitAppUserModelID and neither can i
     # nor can they be assed to implement media controls, so i have to resort to this for BOTH of my problems
     subprocess.Popen(
-        f"wine {steam_folder}/common/wallpaper_engine/wallpaper32.exe -control openWallpaper -file {steam_folder}/workshop/content/431960/wrapper_{position}/project.json -playInWindow \"Wallpaper Engine {position}\" -borderless -width {data['width']} -height 1080",
+        f"wine {steam_folder}/common/wallpaper_engine/wallpaper32.exe -control openWallpaper -file {steam_folder}/workshop/content/431960/wrapper_{position}/project.json -playInWindow \"Wallpaper Engine {position}\" -borderless -width {data['dimensions'][0]} -height {data['dimensions'][1]}",
         shell=True,
         env=env,
         stderr=subprocess.DEVNULL,
