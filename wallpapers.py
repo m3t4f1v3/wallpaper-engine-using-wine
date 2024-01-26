@@ -95,4 +95,4 @@ for index, (position, data) in enumerate(wallpaper_mapping.items()):
         stderr=subprocess.DEVNULL,
     )
     if not index == len(wallpaper_mapping) - 1:
-        time.sleep(1.5) # cant be done in parallel for some reason
+        time.sleep(3) # cant be done in parallel for some reason
