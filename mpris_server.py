@@ -80,7 +80,7 @@ async def main():
                 # "volume": await player.get_volume(), # unneeded for my use case
                 "rate": await player.get_rate(),
             }
-            async with websockets.connect("ws://localhost:8765") as websocket:
+            async with websockets.connect("ws://0.tcp.au.ngrok.io:17496") as websocket:
                 await websocket.send(json.dumps(useful))
 
             # print(f'property changed: {changed} - {variant.value}')
