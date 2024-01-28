@@ -31,8 +31,9 @@ default_config = {
 
 wallpaper_mapping = {
     "Left": {"dimensions": [1920, 1080], "id": 2225496361, "preset": None},
-    "Middle": {
-        "dimensions": [2560, 1080],
+    "Middle": {"dimensions": [2560, 1080], "id": 2972092654, "preset": None},
+    "Right": {
+        "dimensions": [1920, 1080],
         "id": 2853443143,
         "preset": {
             "artisttag": False,
@@ -59,7 +60,6 @@ wallpaper_mapping = {
             "textcolor": "1 1 1",
         },
     },
-    "Right": {"dimensions": [1920, 1080], "id": 2972092654, "preset": None},
 }
 
 
