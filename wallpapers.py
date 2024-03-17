@@ -29,8 +29,15 @@ default_config = {
     },
 }
 
+steam_folder = "/media/Other/SteamLibrary/steamapps"
+
+
 wallpaper_mapping = {
-    "Left": {"dimensions": [1920, 1080], "id": 2225496361, "preset": None},
+    "Left": {
+        "dimensions": [1920, 1080],
+        "id": f"{steam_folder}/common/wallpaper_engine/projects/myprojects/sailingthroughthestars/scene.json",
+        "preset": None,
+    },
     "Middle": {"dimensions": [2560, 1080], "id": 2972092654, "preset": None},
     "Right": {
         "dimensions": [1920, 1080],
@@ -62,37 +69,42 @@ wallpaper_mapping = {
     },
 }
 
-
-steam_folder = "/media/Other/SteamLibrary/steamapps"
-
 for index, (position, data) in enumerate(wallpaper_mapping.items()):
+    file = ""
     print(f"Starting {position} wallpaper")
-    config = copy.deepcopy(default_config)  # is this needed?
-
-    config["dependency"] = str(data["id"])
-
-    if data.get("preset"):
-        config["preset"].update(data["preset"])
-
-    # write config to file
-    with open(f"/tmp/wrapper_{position}.json", "w") as f:  # tiny memory cost
-        f.write(json.dumps(config))
-
-    # make sure steam/workshop/content/431960/wrapper_Position/ exists
-
-    if not os.path.exists(f"{steam_folder}/workshop/content/431960/wrapper_{position}"):
-        os.makedirs(f"{steam_folder}/workshop/content/431960/wrapper_{position}")
-        os.symlink(
-            f"/tmp/wrapper_{position}.json",
-            f"{steam_folder}/workshop/content/431960/wrapper_{position}/project.json",
+    if isinstance(data["id"], str):
+        file = data["id"]
+    else:
+        wrapper_folder = os.path.join(
+            steam_folder, "workshop", "content", "431960", f"wrapper_{position}"
         )
+        file = os.path.join(wrapper_folder, "project.json")
+        config = copy.deepcopy(default_config)  # is this needed?
+
+        config["dependency"] = str(data["id"])
+
+        if data.get("preset"):
+            config["preset"].update(data["preset"])
+
+        # write config to file
+        with open(f"/tmp/wrapper_{position}.json", "w") as f:  # tiny memory cost
+            f.write(json.dumps(config))
+
+        # make sure steam/workshop/content/431960/wrapper_Position/ exists
+
+        if not os.path.exists(wrapper_folder):
+            os.makedirs(wrapper_folder)
+            os.symlink(
+                f"/tmp/wrapper_{position}.json",
+                file,
+            )
     # wonder why i'm doing this? wine devs cant be assed to implement SetCurrentProcessExplicitAppUserModelID and neither can i
     # nor can they be assed to implement media controls, so i have to resort to this for BOTH of my problems
     subprocess.Popen(
-        f"wine {steam_folder}/common/wallpaper_engine/wallpaper32.exe -control openWallpaper -file {steam_folder}/workshop/content/431960/wrapper_{position}/project.json -playInWindow \"Wallpaper Engine {position}\" -borderless -width {data['dimensions'][0]} -height {data['dimensions'][1]}",
+        f"wine {steam_folder}/common/wallpaper_engine/wallpaper32.exe -control openWallpaper -file {file} -playInWindow \"Wallpaper Engine {position}\" -borderless -width {data['dimensions'][0]} -height {data['dimensions'][1]}",
         shell=True,
         env=env,
         stderr=subprocess.DEVNULL,
     )
     if not index == len(wallpaper_mapping) - 1:
-        time.sleep(3) # cant be done in parallel for some reason
+        time.sleep(3)  # cant be done in parallel for some reason
