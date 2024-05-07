@@ -3,3 +3,4 @@ winrt-Windows.Media
 winrt-Windows.Media.Playback
 winrt-Windows.Storage
 winrt-Windows.Storage.Streams
+websockets
