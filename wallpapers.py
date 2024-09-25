@@ -33,11 +33,11 @@ steam_folder = "/media/Other/SteamLibrary/steamapps"
 
 
 wallpaper_mapping = {
-    "Left": {
-        "dimensions": [1920, 1080],
-        "id": f"{steam_folder}/common/wallpaper_engine/projects/myprojects/sailingthroughthestars/scene.json",
-        "preset": None,
-    },
+    # "Left": {
+    #     "dimensions": [1920, 1080],
+    #     "id": f"{steam_folder}/common/wallpaper_engine/projects/myprojects/sailingthroughthestars/scene.json",
+    #     "preset": None,
+    # },
     "Middle": {"dimensions": [2560, 1080], "id": 2972092654, "preset": None},
     "Right": {
         "dimensions": [1920, 1080],
